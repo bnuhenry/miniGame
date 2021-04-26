@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+<body>
+<div id="app">
+  <div class="top">取火柴游戏</div>
+  <div class="center">
+    <div class="centertop">
+      <div class="centertop-optionBox">
+        <div class="centertop-option" :id="whichSideIndex==1?'redSelected':'redUnSelected'">红方抽取</div>
+      </div>
+      <div class="centertop-optionBox">
+        <div class="centertop-option" :id="whichSideIndex==2?'blueSelected':'blueUnSelected'">蓝方抽取</div>
+      </div>
+    </div>
+    <div class="centerBody">
+      <div class="match-selector" v-for="(item,i) of dataAry">
+        <div class="match-selector-top">第{{i+1}}行火柴</div>
+        <div class="match-selector-body">
+          <div class="match-selector-image" v-for="itemdetail of item"></div>
+        </div>
+        <div class="match-operateBox">
+          <div class="match-operateBox-titleSide">
+            <div class="match-operateBox-titleSideTop">
+              输入需要抽取火柴的根数:
+            </div>
+            <div class="match-operateBox-titleSideBottom">
+              还剩:<span class="colorBlue">{{item.length}}</span>
+            </div>
+          </div>
+          <div class="match-operateBox-inputSide">
+            <input class="match-operateBox-input" type="number" v-model="pullOutNumberAry[i]" value="0">
+            <button class="match-operateBox-button" :disabled="item.length==0" @click="pullOutMatch(i)">抽取</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button id="game-start-button" @click="letGameStart()">游戏开始</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      stickAry:[],
+      pullOutNumberAry:[0,0,0],
+      dataAry:[],
+      matchFirstAry:[],
+      whichSideIndex:1,
+    },
+    methods:{
+      letGameStart:function(){
+        this.stickAry = [3,5,7]
+        this.pullOutNumberAry = [0,0,0];
+        const redSide = Math.floor(Math.random()*100)
+        const blueSide = Math.floor(Math.random()*100)
+        const redSideFirst = redSide>=blueSide
+        const sideStr = redSideFirst?'红':'蓝'
+        this.whichSideIndex = redSideFirst?1:2
+        alert("游戏开始,红方随机数"+redSide+",蓝方随机数"+blueSide+","+sideStr+"方先来");
+        //把每行火柴个数渲染出来
+        this.dataAry = this.stickAry.map(item=>{
+          return new Array(item)
+        })
+      },
+      //抽取按钮方法
+      pullOutMatch:function(e){
+        const index = e;
+        const inputNumber = this.pullOutNumberAry[index];
+        if(this.stickAry[index]>0){
+          if(inputNumber>0){
+            if(inputNumber<=this.stickAry[index]){
+              this.dataAry[index].splice(0,this.pullOutNumberAry[index])
+              this.stickAry[index] -= inputNumber;
+              this.judgeGameResult()
+            }else{
+              alert("没有那么多火柴可以抽取");
+            }
+          }else{
+            alert("数字必须大于0");
+          }
+        }else{
+          alert("这一行火柴已全部取完");
+        }
+        console.log(this.stickAry);
+        this.pullOutNumberAry = [0,0,0];
+      },
+      //判断是否有胜负结果
+      judgeGameResult:function(){
+        let total = 0
+        for(let item of this.stickAry){
+          total += item
+        }
+        if(total==0){
+          const gameWinner = this.whichSideIndex==1?'蓝':'红'
+          alert(gameWinner+'方获胜')
+          this.letGameStart()
+        }else if(total==1){
+          const gameWinner = this.whichSideIndex==1?'红':'蓝'
+          alert(gameWinner+'方获胜')
+          this.letGameStart()
+        }else{
+          //若没有结果则切换另一方继续进行游戏
+          this.whichSideIndex = this.whichSideIndex==1?2:1
+        }
+      }
+    },
+  })
+</script>
+</body>
+<style>
+  @import './index.css'
+</style>
+</html>

@@ -1,0 +1,176 @@
+#app{
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.top{
+  width: 500px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  font-weight: 600;
+  color:#666666;
+}
+.center{
+  width: 500px;
+  height: 600px;
+}
+.centertop{
+  width: 500px;
+  height: 50px;
+  display: flex;
+  border: 1px solid #eeeeee;
+}
+.centertop-optionBox{
+  width: 250px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.centertop-option{
+  width: 200px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+#redUnSelected{
+  color:red;
+}
+#blueUnSelected{
+  color:blue;
+}
+#redSelected{
+  color:#ffffff;
+  background-color:red;
+}
+#blueSelected{
+  color:#ffffff;
+  background-color:blue;
+}
+.centerBody{
+  position: relative;
+  width: 500px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #eeeeee;
+}
+.match-selector{
+  position: relative;
+  margin-top: 20px;
+  width: 450px;
+  height: 100px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  overflow: hidden;
+}
+.match-selector-top{
+  padding-left:50px;
+  width: 450px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.match-selector-body{
+  padding-left:50px;
+  width: 450px;
+  height: 70px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.match-selector-image{
+  width: 30px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./match.png');
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+}
+.match-operateBox{
+  position:absolute;
+  top: 0;
+  right: 0;
+  width: 160px;
+  height: 100px;
+  display: flex;
+}
+.match-operateBox-titleSide{
+  width: 60px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-top:5px;
+  font-size: 15px;
+  color:red;
+}
+.match-operateBox-titleSideTop{
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  color:red;
+}
+.match-operateBox-titleSideBottom{
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.colorBlue{
+  color:blue;
+  font-weight: 600;
+}
+.match-operateBox-inputSide{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.match-operateBox-input{
+  border-radius: 10px;
+  border:2px solid orange;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  overflow: hidden;
+}
+.match-operateBox-button{
+  margin-top:5px;
+  border-radius: 5px;
+  width: 70px;
+  height: 30px;
+  background-color: #eeeeee;
+}
+#game-start-button{
+  position: absolute;
+  bottom: 50px;
+  left:150px;
+  width: 200px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: green;
+  color:#ffffff;
+  font-size: 25px;
+  font-weight: 600;
+}
